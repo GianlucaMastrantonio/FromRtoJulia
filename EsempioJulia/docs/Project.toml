@@ -1,0 +1,6 @@
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+EsempioJulia = "67ea236d-9e45-4f4b-a7e1-2f8055f1d33c"
+
+[compat]
+Documenter = "~0.24"
