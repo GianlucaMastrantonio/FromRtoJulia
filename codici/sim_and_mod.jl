@@ -135,7 +135,7 @@ plot(ysim, col=rep(1:d, times=length(ysim)/d), pch=20 )
 
 
 ## stimiamo il modello
-toggle(true)
+toggle(false)
 
 regcoefOUT, sigma2OUT = MCMC(
     ysim;
@@ -150,6 +150,8 @@ regcoefOUT, sigma2OUT = MCMC(
 
 );
 
+## test Packages
+# Pkg.test("EsempioJulia")
 
 @rput regcoefOUT;
 @rput sigma2OUT;
@@ -178,6 +180,8 @@ dev.off()
 
 
 """
+
+
 
 
 
