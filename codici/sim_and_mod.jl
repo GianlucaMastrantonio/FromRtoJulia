@@ -134,6 +134,55 @@ plot(ysim, col=rep(1:d, times=length(ysim)/d), pch=20 )
 """
 
 
+#### #### #### #### #### 
+#### Mutable and Immutable objects- examples
+#### #### #### #### #### 
+
+Mat_a = ones(Float64,5 ,5)
+Mat_b = ones(Float64,5 ,5)
+
+# check if they have the same values
+Mat_a == Mat_b
+# check if they are the same object
+Mat_a === Mat_b
+
+#
+Mat_c = Mat_a
+
+Mat_a == Mat_c
+Mat_a === Mat_c
+
+Mat_a[1,1] = 10.0
+Mat_c[1,2] = -10.0
+Mat_b[1,1:2]
+Mat_a[1,1:2]
+Mat_c[1,1:2]
+
+Mat_d = deepcopy(Mat_a)
+Mat_a[1,1] = 100.0
+
+Mat_d[1,1]
+
+
+#### #### #### #### #### 
+#### view - examples
+#### #### #### #### #### 
+
+Mat = reshape(rand(Uniform(0.0,1.0),50^2),(50,50));
+
+vect = Mat[1,[1,2,5]]
+typeof(vect)
+vect[3] = 10.0
+Mat[1,5]
+
+vect_view = @view  Mat[1,[1,2,5]]
+typeof(vect_view)
+
+vect_view[3] = 10.0
+Mat[1,5]
+
+
+
 ## stimiamo il modello
 toggle(false)
 
