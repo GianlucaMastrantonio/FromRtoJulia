@@ -47,6 +47,10 @@ using ToggleableAsserts
 #### Data simulation
 #### #### #### #### #### #### 
 
+rngseed = 123456;
+Random.seed!(rngseed);
+
+
 n = 100::Int64
 d = 10::Int64
 ntot = Int64(n*d)
