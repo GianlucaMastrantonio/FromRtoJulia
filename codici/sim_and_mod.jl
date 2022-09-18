@@ -206,6 +206,14 @@ regcoefOUT, sigma2OUT = MCMC(
 ## test Packages
 # Pkg.test("EsempioJulia")
 
+#@time EsempioJulia.densy(reshape(ysim,prod(size(ysim))),ones(Float64,prod(size(ysim)))*2.0, 1.0)
+## test mult thread and spawn
+# spawn
+#@time EsempioJulia.densy_spawn(reshape(ysim,prod(size(ysim))),ones(Float64,prod(size(ysim)))*2.0, 1.0)
+# thread
+#@time EsempioJulia.densy_thread(reshape(ysim,prod(size(ysim))),ones(Float64,prod(size(ysim)))*2.0, 1.0)
+
+
 @rput regcoefOUT;
 @rput sigma2OUT;
 @rput regcoef;
