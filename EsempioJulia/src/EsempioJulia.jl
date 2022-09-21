@@ -48,6 +48,21 @@ struct Sigma2NoUp <: Sigma2Update
     end
 end
 
+
+#mutable 
+struct Sigma2AdaptMetropolis <: Sigma2Update
+    
+    alphatarget::Float64
+    sumalpha::Vector{Float64}
+    var::Vector{Float64}
+    iterupdate::Int64
+
+    function Sigma2AdaptMetropolis(alphatarget::Float64,var::Float64, iterupdate::Int64)
+       
+        new(alphatarget, zeros(Float64,1),ones(Float64,1)*var,iterupdate )
+    end
+end
+
 ##### Include
 include(joinpath("model.jl"))
 include(joinpath("density.jl"))

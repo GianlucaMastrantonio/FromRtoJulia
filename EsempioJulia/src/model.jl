@@ -62,6 +62,9 @@ function MCMC(
             ### sample sigma2
             samplesigma2!(data,X,  priors.sigma2,regcoefMCMC, sigma2MCMC, sigma2Update, var_prop)
             
+            ### adaptive sigma2
+            adaptive_sigma(sigma2Update, iter)
+            
         end
         thinburnin = mcmc.thin
         

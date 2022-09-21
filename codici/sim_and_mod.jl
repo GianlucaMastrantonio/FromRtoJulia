@@ -1,4 +1,6 @@
 
+# Open julia with multiple threads: julia --threads 4
+
 #= Cose da fare la prima volta
 La prima cosa da fare è creare il manifest e project 
 
@@ -190,6 +192,10 @@ Mat[1,5]
 ## stimiamo il modello
 toggle(false)
 
+EsempioJulia.Sigma2Metropolis()
+
+
+
 regcoefOUT, sigma2OUT = MCMC(
     ysim;
     X = Xmat,
@@ -198,6 +204,7 @@ regcoefOUT, sigma2OUT = MCMC(
     init  = (regcoef = [0.0 for i = 1:size(Xmat,2)], sigma2 = [1.0]),
     #sigma2Update = EsempioJulia.Sigma2Gibbs()
     sigma2Update = EsempioJulia.Sigma2Metropolis()
+    #sigma2Update = EsempioJulia.Sigma2AdaptMetropolis(0.25,0.1,50)
     # sigma2Update = EsempioJulia.Sigma2Hamil()
     #sigma2Update = EsempioJulia.Sigma2NoUp()
 
