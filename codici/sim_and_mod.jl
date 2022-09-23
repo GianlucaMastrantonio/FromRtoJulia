@@ -24,6 +24,9 @@ Pkg.instantiate va usato solo la prima volta che si crea il progetto
 #### Packages
 #### #### #### #### #### 
 
+
+
+
 using Pkg
 Pkg.activate("/Users/gianlucamastrantonio/Dropbox (Politecnico di Torino Staff)/lavori/julia/codici")
 # usare "]" e poi add Nome pacchetto, oppure
@@ -169,7 +172,11 @@ Mat_a[1,1] = 100.0
 
 Mat_d[1,1]
 
+Mat_a_res = reshape(Mat_a, prod(size(Mat_a)))
 
+Mat_a_res === Mat_a
+Mat_a_res[1] = 20000.0
+Mat_a[1:2,1:2]
 #### #### #### #### #### 
 #### view - examples
 #### #### #### #### #### 
@@ -189,10 +196,38 @@ Mat[1,5]
 
 
 
+#### #### #### #### #### 
+#### global/local variables
+#### #### #### #### #### 
+x = 0.1
+for i = 1:10
+
+    x = i*0.5
+
+end
+x
+
+x = 0.1
+for i = 1:10
+
+    local x = i*0.5
+
+end
+x
+
+x = 0.1
+for i = 1:10
+
+    global x = i*0.5
+
+end
+x
+
+include("/Users/gianlucamastrantonio/Dropbox (Politecnico di Torino Staff)/lavori/julia/codici/LocalGlobal.jl")
+z
 ## stimiamo il modello
 toggle(false)
 
-EsempioJulia.Sigma2Metropolis()
 
 
 
