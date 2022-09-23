@@ -1,6 +1,7 @@
 [deps]
 Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
 EsempioJulia = "67ea236d-9e45-4f4b-a7e1-2f8055f1d33c"
+LanguageServer = "2b0e0bc5-e4fd-59b4-8912-456d1b03d8d7"
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 PDMats = "90014a1f-27ba-587c-ab20-58faa44d9150"
 RCall = "6f49c342-dc21-5d91-9882-a32aef131414"

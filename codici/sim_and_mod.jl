@@ -42,6 +42,7 @@ Pkg.activate("/Users/gianlucamastrantonio/Dropbox (Politecnico di Torino Staff)/
 # Pkg.add("StatsBase")
 # Pkg.develop(path="/Users/gianlucamastrantonio/Dropbox (Politecnico di Torino Staff)/lavori/julia/EsempioJulia/")
 
+using LanguageServer
 using Revise
 using Distributions, Random
 using LinearAlgebra, PDMats, StatsBase
@@ -228,13 +229,27 @@ z
 ## stimiamo il modello
 toggle(false)
 
-
-
-
 regcoefOUT, sigma2OUT = MCMC(
     ysim;
     X = Xmat,
     mcmc = (iter = 10000, thin = 2, burnin = 2),
+    priors  = (regcoef=[0.0,1000.0], sigma2 = [0.1,0.1]),
+    init  = (regcoef = [0.0 for i = 1:size(Xmat,2)], sigma2 = [1.0]),
+    #sigma2Update = EsempioJulia.Sigma2Gibbs()
+    sigma2Update = EsempioJulia.Sigma2Metropolis()
+    #sigma2Update = EsempioJulia.Sigma2AdaptMetropolis(0.25,0.1,50)
+    # sigma2Update = EsempioJulia.Sigma2Hamil()
+    #sigma2Update = EsempioJulia.Sigma2NoUp()
+
+);
+
+## Debugg
+
+
+@run _, _ = MCMC(
+    ysim;
+    X = Xmat,
+    mcmc = (iter = 10, thin = 1, burnin = 1),
     priors  = (regcoef=[0.0,1000.0], sigma2 = [0.1,0.1]),
     init  = (regcoef = [0.0 for i = 1:size(Xmat,2)], sigma2 = [1.0]),
     #sigma2Update = EsempioJulia.Sigma2Gibbs()

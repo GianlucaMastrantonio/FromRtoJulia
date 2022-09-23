@@ -74,7 +74,8 @@ include(joinpath("mcmcsteps/samplesigma2.jl"))
 ##### Functions
 export    
     sim,
-    MCMC
+    MCMC,
+    MCMC2
 
 
 
