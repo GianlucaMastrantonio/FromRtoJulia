@@ -57,7 +57,7 @@ rngseed = 123456;
 Random.seed!(rngseed);
 
 
-n = 100::Int64
+n = 10000::Int64
 d = 10::Int64
 ntot = Int64(n*d)
 ncov_num  = 5::Int64
@@ -241,7 +241,8 @@ regcoefOUT, sigma2OUT = MCMC(
     #sigma2Update = EsempioJulia.Sigma2AdaptMetropolis(0.25,0.1,50)
     # sigma2Update = EsempioJulia.Sigma2Hamil()
     #sigma2Update = EsempioJulia.Sigma2NoUp()
-    sigma2distr = Normal(),
+    # sigma2distr = Normal()
+    # sigma2distr = Normal()
 );
 
 ## Debug

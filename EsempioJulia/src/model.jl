@@ -6,8 +6,9 @@ function MCMC(
     priors::NamedTuple{(:regcoef, :sigma2), Tuple{Vector{Float64}, Vector{Float64}}} = (regcoef=[0.0,1000.0], sigma2 = [0.1,0.1]),
     init::NamedTuple{(:regcoef, :sigma2), Tuple{Vector{Float64}, Vector{Float64}}},
     sigma2Update::Sigma2Update = Sigma2Gibbs(),
+    sigma2distr::Distribution{Univariate, Continuous} = InverseGamma(),
     var_prop::Float64 = 0.1,
-    sigma2distr::Distribution{Univariate, Continuous} = InverseGamma()
+    
 
 )::Tuple{Matrix{Float64}, Matrix{Float64}}
 
