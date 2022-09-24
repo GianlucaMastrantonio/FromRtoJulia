@@ -6,7 +6,8 @@ function MCMC(
     priors::NamedTuple{(:regcoef, :sigma2), Tuple{Vector{Float64}, Vector{Float64}}} = (regcoef=[0.0,1000.0], sigma2 = [0.1,0.1]),
     init::NamedTuple{(:regcoef, :sigma2), Tuple{Vector{Float64}, Vector{Float64}}},
     sigma2Update::Sigma2Update = Sigma2Gibbs(),
-    var_prop::Float64 = 0.1
+    var_prop::Float64 = 0.1,
+    sigma2distr::Distribution{Univariate, Continuous} = InverseGamma()
 
 )::Tuple{Matrix{Float64}, Matrix{Float64}}
 
@@ -34,6 +35,22 @@ function MCMC(
     sigma2OUT = Matrix{Float64}(undef,  1, SampleToSave)
     
 
+    ### prior sigma
+
+    if sigma2distr == InverseGamma()
+        sigma2distr_updated = InverseGamma(priors.sigma2...)
+    end
+    
+    
+    if sigma2distr == Normal()
+        # this is actually a truncated normal prior
+        sigma2distr_updated = Normal(priors.sigma2...)
+    end
+    
+    if sigma2distr == Gamma()
+        sigma2distr_updated = Gamma(priors.sigma2...)
+    end
+    
 
     ### MCMC
 
@@ -61,6 +78,7 @@ function MCMC(
             
             ### sample sigma2
             samplesigma2!(data,X,  priors.sigma2,regcoefMCMC, sigma2MCMC, sigma2Update, var_prop)
+            #samplesigma2!(data,X,  priors.sigma2,regcoefMCMC, sigma2MCMC, sigma2distr_updated, var_prop)
             
             ### adaptive sigma2
             adaptive_sigma(sigma2Update, iter)

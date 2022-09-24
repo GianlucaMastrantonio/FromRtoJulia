@@ -118,6 +118,7 @@ rm(Xmat_app)
 ## controllate sempre che le cose siano nella forma che volete
 Xmat::Matrix{Float64};
 
+
 ## creaiamo uan funzione per generare i dati
 # ma prima simuliamo i beta
 
@@ -236,15 +237,14 @@ regcoefOUT, sigma2OUT = MCMC(
     priors  = (regcoef=[0.0,1000.0], sigma2 = [0.1,0.1]),
     init  = (regcoef = [0.0 for i = 1:size(Xmat,2)], sigma2 = [1.0]),
     #sigma2Update = EsempioJulia.Sigma2Gibbs()
-    sigma2Update = EsempioJulia.Sigma2Metropolis()
+    sigma2Update = EsempioJulia.Sigma2Metropolis(),
     #sigma2Update = EsempioJulia.Sigma2AdaptMetropolis(0.25,0.1,50)
     # sigma2Update = EsempioJulia.Sigma2Hamil()
     #sigma2Update = EsempioJulia.Sigma2NoUp()
-
+    sigma2distr = Normal(),
 );
 
-## Debugg
-
+## Debug
 
 @run _, _ = MCMC(
     ysim;

@@ -63,6 +63,7 @@ struct Sigma2AdaptMetropolis <: Sigma2Update
     end
 end
 
+
 ##### Include
 include(joinpath("model.jl"))
 include(joinpath("density.jl"))
@@ -75,7 +76,8 @@ include(joinpath("mcmcsteps/samplesigma2.jl"))
 export    
     sim,
     MCMC,
-    MCMC2
+    MCMC2#,
+    #subtypetree
 
 
 
