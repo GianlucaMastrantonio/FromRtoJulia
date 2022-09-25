@@ -123,16 +123,19 @@ end
 ## ## ## ## ## ## ## ## 
 ## Using Distribution
 ## ## ## ## ## ## ## ## 
-function samplesigma2!(data::Matrix{Float64},X::Matrix{Float64},  prior::Vector{Float64},regcoefMCMC::Matrix{Float64}, sigma2MCMC::Matrix{Float64},
+function samplesigma2!(data::Matrix{Float64},X::Matrix{Float64}, regcoefMCMC::Matrix{Float64}, sigma2MCMC::Matrix{Float64},
     distr::InverseGamma{Float64}, var_prop::Float64
     )
+
+    par_a = distr.invd.α
+    par_b = distr.θ
 
     ncov = size(X,2)
 
     mean = X*regcoefMCMC[:]
     
-    para::Float64 = Float64(size(data[:],1)/2.0) +  prior[1]
-    parb::Float64 = transpose((data[:]-mean))*(data[:]-mean)/2.0 +  prior[2]
+    para::Float64 = Float64(size(data[:],1)/2.0) +  par_a
+    parb::Float64 = transpose((data[:]-mean))*(data[:]-mean)/2.0 +  par_b
     
     sigma2MCMC[:] .= rand(Gamma(para,1.0/parb))
     
@@ -140,14 +143,19 @@ function samplesigma2!(data::Matrix{Float64},X::Matrix{Float64},  prior::Vector{
 end
 
 
-function samplesigma2!(data::Matrix{Float64},X::Matrix{Float64},  prior::Vector{Float64},regcoefMCMC::Matrix{Float64}, sigma2MCMC::Matrix{Float64},
+function samplesigma2!(data::Matrix{Float64},X::Matrix{Float64},  regcoefMCMC::Matrix{Float64}, sigma2MCMC::Matrix{Float64},
     distr::Distribution{Univariate, Continuous}, var_prop::Float64
     )
 # dump(Normal{Float64})
 
     
-
-
+    # name_par = fieldnames(typeof(distr))
+    # par = zeros(Float64, length(bb))
+    
+    # for k = 1:length(bb)
+    #     par[i] = getfield(distr, name_par[k])
+    # end
+    
     prop = rand(Normal(log(sigma2MCMC[1]), var_prop^0.5))
     var_prop = exp(prop)
     

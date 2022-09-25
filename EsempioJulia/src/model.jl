@@ -38,19 +38,19 @@ function MCMC(
 
     ### prior sigma
 
-    if sigma2distr == InverseGamma()
-        sigma2distr_updated = InverseGamma(priors.sigma2...)
-    end
+    # if sigma2distr == InverseGamma()
+    #     sigma2distr_updated = InverseGamma(priors.sigma2...)
+    # end
     
     
-    if sigma2distr == Normal()
-        # this is actually a truncated normal prior
-        sigma2distr_updated = Normal(priors.sigma2...)
-    end
+    # if sigma2distr == Normal()
+    #     # this is actually a truncated normal prior
+    #     sigma2distr_updated = Normal(priors.sigma2...)
+    # end
     
-    if sigma2distr == Gamma()
-        sigma2distr_updated = Gamma(priors.sigma2...)
-    end
+    # if sigma2distr == Gamma()
+    #     sigma2distr_updated = Gamma(priors.sigma2...)
+    # end
     
 
     ### MCMC
@@ -78,8 +78,8 @@ function MCMC(
             samplemu!(data,X,  priors.regcoef,regcoefMCMC, sigma2MCMC)
             
             ### sample sigma2
-            samplesigma2!(data,X,  priors.sigma2,regcoefMCMC, sigma2MCMC, sigma2Update, var_prop)
-            #samplesigma2!(data,X,  priors.sigma2,regcoefMCMC, sigma2MCMC, sigma2distr_updated, var_prop)
+            #samplesigma2!(data,X,  priors.sigma2,regcoefMCMC, sigma2MCMC, sigma2Update, var_prop)
+            samplesigma2!(data,X,  regcoefMCMC, sigma2MCMC, sigma2distr, var_prop)
             
             ### adaptive sigma2
             adaptive_sigma(sigma2Update, iter)

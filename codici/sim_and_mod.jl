@@ -241,9 +241,12 @@ regcoefOUT, sigma2OUT = MCMC(
     #sigma2Update = EsempioJulia.Sigma2AdaptMetropolis(0.25,0.1,50)
     # sigma2Update = EsempioJulia.Sigma2Hamil()
     #sigma2Update = EsempioJulia.Sigma2NoUp()
-    # sigma2distr = Normal()
-    # sigma2distr = Normal()
+    #sigma2distr = Normal(0.0, 10000.0)
+    #sigma2distr = Gamma(0.1,0.1)
+    sigma2distr = InverseGamma(0.1, 1.0/0.1)
 );
+
+
 
 ## Debug
 
