@@ -106,7 +106,7 @@ Xmat = model.matrix(formula(form), Xmat_app)
 """
 
 @rget Xmat;
-
+# Xmat = reshape(rand(Uniform(-10.0,10.0), ntot*10), (ntot,10));
 # se create ogetti "grandi", vi consiglio di elininarli da R, visto che la memoria non è condivisa
 R"""
 

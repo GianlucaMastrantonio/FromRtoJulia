@@ -78,8 +78,8 @@ function MCMC(
             samplemu!(data,X,  priors.regcoef,regcoefMCMC, sigma2MCMC)
             
             ### sample sigma2
-            #samplesigma2!(data,X,  priors.sigma2,regcoefMCMC, sigma2MCMC, sigma2Update, var_prop)
-            samplesigma2!(data,X,  regcoefMCMC, sigma2MCMC, sigma2distr, var_prop)
+            samplesigma2!(data,X,  priors.sigma2,regcoefMCMC, sigma2MCMC, sigma2Update, var_prop)
+            #samplesigma2!(data,X,  regcoefMCMC, sigma2MCMC, sigma2distr, var_prop)
             
             ### adaptive sigma2
             adaptive_sigma(sigma2Update, iter)
