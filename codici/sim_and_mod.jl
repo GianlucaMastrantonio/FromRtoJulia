@@ -24,7 +24,7 @@ Pkg.instantiate va usato solo la prima volta che si crea il progetto
 #### Packages
 #### #### #### #### #### 
 
-
+#ENV["R_HOME"] =  "/lustre/software/R/4.0.5_10gcc_AuthenticAMD/lib64/R"
 
 
 using Pkg
@@ -123,6 +123,8 @@ Xmat::Matrix{Float64};
 # ma prima simuliamo i beta
 
 regcoef = [rand(Normal(0.0,1.0)) for i = 1:size(Xmat,2)]::Vector{Float64};
+#@code_warntype EsempioJulia.sim(Xmat, regcoef,sigma2);
+
 
 
 ysim = sim(Xmat, regcoef,sigma2);
@@ -228,7 +230,7 @@ x
 include("/Users/gianlucamastrantonio/Dropbox (Politecnico di Torino Staff)/lavori/julia/codici/LocalGlobal.jl")
 z
 ## stimiamo il modello
-toggle(false)
+toggle(false);
 
 regcoefOUT, sigma2OUT = MCMC(
     ysim;
