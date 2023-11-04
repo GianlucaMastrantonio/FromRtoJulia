@@ -6,7 +6,7 @@
 ## ## ## ## ## ##
 ## Modello Lineare - MCMC
 ## ## ## ## ## ##
-
+ 
 
 ModLinC = function(formula,  beta.mean, beta.variance,sigma2.a, sigma2.b, start.beta, start.sigma2, iter, burnin, thin, Data, sd.prop = 1)
 {
